@@ -1,6 +1,7 @@
 import { getSession, signOut } from "next-auth/react";
 import { NextPageContext } from "next";
 import Navbar from "@/components/navbar";
+import BillBoard from "@/components/billBoard";
 
 export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
@@ -22,6 +23,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
+      <BillBoard />
     </>
   );
 }
