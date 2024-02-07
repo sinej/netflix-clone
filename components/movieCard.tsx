@@ -1,5 +1,6 @@
 import React from "react";
 import { BsFillPlayFill } from "react-icons/bs";
+import FavoriteButton from "@/components/favoriteButton";
 type Props = {
   data?: Record<string, any>;
 };
@@ -27,6 +28,7 @@ const MovieCard: React.FC<Props> = (props: Props) => {
             >
               <BsFillPlayFill size={30} />
             </div>
+            <FavoriteButton movieId={data?.id} />
           </div>
 
           <p className="text-green-600 font-semibold mt-4">
@@ -36,6 +38,9 @@ const MovieCard: React.FC<Props> = (props: Props) => {
             <p className="text-white text-[10px] lg:text-sm">
               {data?.duration}
             </p>
+          </div>
+          <div className="flex flex-row mt-4 gap-2 items-center">
+            <p className="text-white text-[10px] lg:text-sm">{data?.genre}</p>
           </div>
         </div>
       </div>
