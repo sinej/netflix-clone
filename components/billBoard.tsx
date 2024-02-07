@@ -9,7 +9,7 @@ const BillBoard = (props: Props) => {
   const {} = props;
   const { data, isLoading, error } = useBillBoard();
   return (
-    <div className="relative w-[56.25vw]">
+    <div className="relative w-full">
       <video
         className="w-full h-[56.25vw] object-cover brightness-[60%]"
         src={data?.videoUrl}
