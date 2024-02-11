@@ -1,7 +1,8 @@
 import React from "react";
-import { BsFillPlayFill } from "react-icons/bs";
+import { BsChevronDown, BsFillPlayFill } from "react-icons/bs";
 import FavoriteButton from "@/components/favoriteButton";
 import { useRouter } from "next/router";
+import useInfoModal from "@/hooks/useInfoModal";
 type Props = {
   data?: Record<string, any>;
 };
@@ -9,6 +10,7 @@ type Props = {
 const MovieCard: React.FC<Props> = (props: Props) => {
   const { data } = props;
   const router = useRouter();
+  const { openModal } = useInfoModal();
   return (
     <div className="group bg-zinc-900 col-span relative h-[12vw]">
       <img
@@ -31,6 +33,13 @@ const MovieCard: React.FC<Props> = (props: Props) => {
               <BsFillPlayFill size={30} />
             </div>
             <FavoriteButton movieId={data?.id} />
+            <div className="cursor-pointer ml-auto group/item w-6 h-6 lg:w-10 lg:h-10 borderwhite border-2 rounded-full flex justify-center items-center transition hover:border-neutral-300">
+              <BsChevronDown
+                onClick={() => openModal(data?.id)}
+                size={30}
+                className="text-white group-hover/item:text-nutral-300"
+              />
+            </div>
           </div>
 
           <p className="text-green-600 font-semibold mt-4">
