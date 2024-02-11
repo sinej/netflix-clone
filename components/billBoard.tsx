@@ -2,12 +2,14 @@ import React from "react";
 import useBillBoard from "@/hooks/useBillBoard";
 
 import { AiOutlineInfoCircle } from "react-icons/ai";
+import PlayButton from "@/components/playButton";
 
 type Props = {};
 
 const BillBoard = (props: Props) => {
   const {} = props;
   const { data, isLoading, error } = useBillBoard();
+
   return (
     <div className="relative w-full">
       <video
@@ -26,6 +28,7 @@ const BillBoard = (props: Props) => {
           {data?.description}
         </p>
         <div className="flex items-center flex-row mt-3 md:mt-4 gap-3">
+          <PlayButton movieId={data?.id} />
           <button className="bg-white text-white bg-opacity-30 rounded-md py-1 md:py-2 px-2 md:px-4 w-auto text-xs lg:text-lg font-semibold flex flex-row transition hover:bg-opacity-20 items-center">
             <AiOutlineInfoCircle className="mr-1" />
             More Info
