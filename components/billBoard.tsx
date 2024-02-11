@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useCallback } from "react";
 import useBillBoard from "@/hooks/useBillBoard";
 
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import PlayButton from "@/components/playButton";
+import useInfoModal from "@/hooks/useInfoModal";
 
 type Props = {};
 
 const BillBoard = (props: Props) => {
   const {} = props;
+  const { openModal } = useInfoModal();
   const { data, isLoading, error } = useBillBoard();
+  const handleOpenModal = useCallback(() => {
+    openModal(data?.id);
+  }, [openModal, data?.id]);
 
   return (
     <div className="relative w-full">
@@ -29,7 +34,10 @@ const BillBoard = (props: Props) => {
         </p>
         <div className="flex items-center flex-row mt-3 md:mt-4 gap-3">
           <PlayButton movieId={data?.id} />
-          <button className="bg-white text-white bg-opacity-30 rounded-md py-1 md:py-2 px-2 md:px-4 w-auto text-xs lg:text-lg font-semibold flex flex-row transition hover:bg-opacity-20 items-center">
+          <button
+            className="bg-white text-white bg-opacity-30 rounded-md py-1 md:py-2 px-2 md:px-4 w-auto text-xs lg:text-lg font-semibold flex flex-row transition hover:bg-opacity-20 items-center"
+            onClick={handleOpenModal}
+          >
             <AiOutlineInfoCircle className="mr-1" />
             More Info
           </button>
